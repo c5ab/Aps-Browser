@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Aps Browser</title>
+    <link rel="icon" href=
+"/Aps Browser.png"
+        type="image/x-icon" />
+</head>
+<body>
+    <style>
+        *{
+            color: aliceblue;
+        }
+        .container{
+  background-color: rgba(100,201,154);
+  padding : 20px;
+  margin : 50px auto;
+  border : 2px solid white;
+  display : grid;
+  width : 70%;
+}
+.splash{
+  cursor : pointer;
+  position : fixed;
+  border-radius: 15px;
+  top : 50%;
+  left : 50%;
+  height : 95%;
+  width : 95%;
+  transform : translate(-50%,-50%);    
+  background-color: rgba(26, 56, 122);
+  transition : all ease-in-out 600ms;
+}
+
+.splash-header {
+  height : 90%;
+  color : white;
+  font-family : consolas;
+  font-size : 30px;
+  display : flex;
+  justify-content: center;
+  align-items : center;
+}
+
+body {
+  background-color: rgba(29,38,48);
+}
+
+.btn {
+  z-index : -1;
+  left : 50%;
+  transform : translateX(-50%);
+}
+    </style>
+    <script></script>
+    <nav class="bg-white border-gray-200 dark:bg-gray-900">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <div>
+
+              <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input"></label>
+              <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file">
+                            
+              <script>
+                document.getElementById("file_input").onchange = function() {
+          var url = URL.createObjectURL(this.files[0]);
+          document.body.style.background = "url(" + url + ") no-repeat";
+          document.body.style.backgroundSize = "cover";
+        }
+            </script>
+              <span  id="hi" style="padding-left:25px ;"class="self-center text-1xl font-semibold  dark:text-white"></span>
+              <script>
+                var span = document.getElementById("hi")
+                fetch("https://api.openweathermap.org/data/2.5/weather?q=Kannamangala&units=metric&appid=fe796a061c9bbab2416062e6b1dcc257").then((res)=>{
+                  return res.json()
+                }).then((data)=>{
+                  span.innerText = Math.round(data.main.temp) + "°C"
+
+                   
+                })
+              </script>
+            </div>
+        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="/Aps Browser.png" class="h-8" alt="Aps Browser" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Aps Browser</span>
+        </a>
+        <div class="flex md:order-2">
+          <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false" class="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1">
+            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            </svg>
+            <span class="sr-only">Search</span>
+          </button>
+          <div class="relative hidden md:block">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+              </svg>
+              <span class="sr-only">Search icon</span>
+            </div>
+            <style>
+              input[type="file"] {
+  display: none;
+  margin-left: 200px;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+            </style>
+
+            
+            <input type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search...">
+           
+
+      
+          </div>
+          <button data-collapse-toggle="navbar-search" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false">
+              <span class="sr-only">Open main menu</span>
+              <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+              </svg>
+          </button>
+        </div>
+          <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
+            <div class="relative mt-3 md:hidden">
+              <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                </svg>
+              
+              </div>
+              
+    
+            </div>
+              
+            <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+              <li>
+                <a href="#" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Home</a>
+              </li>
+              <li>
+                <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
+              </li>
+              <li>
+                <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
+              </li>
+              <input type="color" id="clr">
+              <style>
+            
+          *{
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+          }
+          
+       
+          #clr{
+              margin:0;
+              width: 2em;
+              height: 2em;
+              border: .4em solid black;
+              border-radius: 20%;
+              outline: none;
+              cursor: pointer;
+              box-shadow: 0 0 .5em #111;
+          }
+          
+          .fas{
+              margin: 1em;
+          }
+          
+          input:hover{
+              animation: round 2s infinite;
+          }
+          
+      
+          
+              </style>
+              <script>
+          const bgclr = document.getElementById("clr");
+          
+          bgclr.addEventListener("input", () => {
+            document.body.style.backgroundColor = bgclr.value;
+     
+            if (
+              bgclr.value.includes("00") ||
+              bgclr.value.includes("0a") ||
+              bgclr.value.includes("0b") ||
+              bgclr.value.includes("0c") ||
+              bgclr.value.includes("0d") ||
+              bgclr.value.includes("0e") ||
+              bgclr.value.includes("0f")
+            ) {
+            } else {
+            }
+          });
+              </script>
+            </ul>
+            
+          </div>
+        </div>
+      </nav>
+     <div class="items" style="display: flex; float: left; margin-bottom: 350px;width: 400px; height: 400px; display: flex; text-align: center; justify-content: center; align-items: center; margin-left: 400px;   margin: 0 auto;">
+<script>
+  var input = document.querySelector("search-navbar");
+ async function SearchResults(){
+    
+    const url = `https://google-search95.p.rapidapi.com/googlesearch.php?query=Minecraft&lang=en&offset=0&domain=com&device=Desktop&results=20&country=US`;
+const options = {
+	method: 'GET',
+	headers: {
+		'x-rapidapi-key': '803163ac03mshbb568f3e7a25f6fp1a846ejsn9ef0c7803523',
+		'x-rapidapi-host': 'google-search95.p.rapidapi.com'
+	}
+};
+
+
+	 fetch(url, options).then((res)=>{
+     return res.json()
+   }).then((results)=>{
+   results.objects.forEach(element => {
+    console.log(element);
+    document.body.innerHTML += `<div style="margin: 20px; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
+    <h3>${element.title}</h3>
+    <p>${element.snippet}</p>
+    <a href="${element.link}">Visit Site</a>
+    </div>`;
+   });
+
+   })
+
+  }
+    const textInput = document.getElementById('search-navbar');
+    textInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        console.log('Enter key pressed!');
+        alert("Search Results",input)
+        SearchResults();
+      }
+    });
+    
+
+</script>
+        
+        
+            </div>
+     </div>
+      <div class="splash">
+        <h1 class = "splash-header">Welcome To Aps Browser</h1>
+        
+      </div>
+
+      <script>
+        var splashScreen = document.querySelector('.splash');
+splashScreen.addEventListener('click',()=>{
+  splashScreen.style.opacity = 0;
+  setTimeout(()=>{
+    splashScreen.classList.add('hidden')
+  },610)
+})
+      </script>
+</body>
+</html>
